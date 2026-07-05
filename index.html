@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click to Move Image Up</title>
-    <style>
-        /* Center the layout for demonstration */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fullscreen Square Slide</title>
 
-        /* Style the image container and apply smooth transition */
-        .movable-image {
-            width: 300px;
-            height: auto;
-            cursor: pointer;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            
-            /* Crucial: Smoothly animates the position change over 0.4 seconds */
-            transition: transform 0.4s ease; 
-        }
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+  }
 
-        /* The class JavaScript will add on click to push the image up */
-        .movable-image.move-up {
-            /* Moves the image 50 pixels up along the Y-axis */
-            transform: translateY(-50px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+  /* Fullscreen square */
+  .square {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #4cc9f0, #3a0ca3);
+    transition: transform 0.8s ease;
+  }
+
+  /* Button floats above it */
+  .button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #f72585;
+    color: white;
+    z-index: 10;
+    transition: transform 0.8s ease;
+  }
+
+  /* Slide everything up */
+  .up .square,
+  .up .button {
+    transform: translateY(-120vh);
+  }
+</style>
 </head>
+
 <body>
 
-    <!-- HTML Image Element -->
-    <img 
-        id="myImage" 
-        class="movable-image" 
-        src="https://picsum.photos" 
-        alt="Square image"
-        width="300"
-        height="300"
-        style="object-fit: cover;"
->
+<div id="container">
+  <div class="square"></div>
+  <button class="button" onclick="goUp()">Understood</button>
+</div>
 
-
-    <!-- JavaScript to toggle the movement -->
-    <script>
-        // Select the image using its unique ID
-        const image = document.getElementById('myImage');
-
-        // Listen for a click event on the image
-        image.addEventListener('click', () => {
-            // Toggles the 'move-up' class on and off with each click
-            image.classList.toggle('move-up');
-        });
-    </script>
+<script>
+  function goUp() {
+    document.getElementById("container").classList.add("up");
+  }
+</script>
 
 </body>
 </html>
