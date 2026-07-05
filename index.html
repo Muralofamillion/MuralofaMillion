@@ -1,9 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My GitHub Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click to Move Image Up</title>
+    <style>
+        /* Center the layout for demonstration */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Style the image container and apply smooth transition */
+        .movable-image {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            
+            /* Crucial: Smoothly animates the position change over 0.4 seconds */
+            transition: transform 0.4s ease; 
+        }
+
+        /* The class JavaScript will add on click to push the image up */
+        .movable-image.move-up {
+            /* Moves the image 50 pixels up along the Y-axis */
+            transform: translateY(-50px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, world! Welcome to my website.</h1>
+
+    <!-- HTML Image Element -->
+    <img 
+        id="myImage" 
+        class="movable-image" 
+        src="https://picsum.photos" 
+        alt="Clickable shifting image"
+    >
+
+    <!-- JavaScript to toggle the movement -->
+    <script>
+        // Select the image using its unique ID
+        const image = document.getElementById('myImage');
+
+        // Listen for a click event on the image
+        image.addEventListener('click', () => {
+            // Toggles the 'move-up' class on and off with each click
+            image.classList.toggle('move-up');
+        });
+    </script>
+
 </body>
 </html>
